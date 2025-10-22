@@ -12,3 +12,7 @@ print(data)
 #解析原始碼，取得每篇文章的標題
 import bs4
 root=bs4.BeautifulSoup(data,"html.parser")
+titles=root.find_all("div",class_="title") #尋找所有class="title"的div標籤
+for title in titles:
+    if title.a != None:  #有些文章可能被刪除，沒有a標籤
+        print(title.a.string)  #取得標題文字
